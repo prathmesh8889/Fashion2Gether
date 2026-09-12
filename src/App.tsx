@@ -13,6 +13,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import WishlistPage from './pages/WishlistPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const Layout: React.FC = () => {
   const location = useLocation();
@@ -35,6 +36,7 @@ const Layout: React.FC = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/account" element={<LoginPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       {!isAdminRoute && <Footer />}

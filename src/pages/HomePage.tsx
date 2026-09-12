@@ -189,6 +189,67 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Fashion Reels Section */}
+      <section className="section-padding bg-[var(--cream)]">
+        <div className="container-custom">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[var(--charcoal)] mb-2">
+              Fashion Reels & Style Inspiration
+            </h2>
+            <div className="section-divider"></div>
+            <p className="text-[var(--medium-gray)] mt-3">Watch our latest styling videos and trend showcases</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Ethnic Elegance Collection", category: "Ethnic Wear", thumbnail: products[0]?.image || "" },
+              { title: "Western Chic Styles", category: "Western Wear", thumbnail: products[1]?.image || "" },
+              { title: "Festive Season Special", category: "Festive Wear", thumbnail: products[3]?.image || "" },
+              { title: "Kurti Styling Tips", category: "Kurtis", thumbnail: products[2]?.image || "" },
+              { title: "Party Wear Looks", category: "Party Wear", thumbnail: products[1]?.image || "" },
+              { title: "Saree Draping Styles", category: "Sarees", thumbnail: products[3]?.image || "" },
+            ].map((reel, i) => (
+              <a
+                key={i}
+                href={storeInfo.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative aspect-[9/16] rounded-lg overflow-hidden bg-[var(--charcoal)]"
+              >
+                <img
+                  src={reel.thumbnail}
+                  alt={reel.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                    <svg className="w-8 h-8 text-[var(--rose)] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <p className="text-xs uppercase tracking-wider text-[var(--rose)] mb-1">{reel.category}</p>
+                  <h3 className="font-semibold text-sm">{reel.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <a
+              href={storeInfo.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--rose)] text-white font-medium rounded hover:bg-[var(--burgundy)] transition-colors"
+            >
+              <Instagram size={18} />
+              Watch More on Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Instagram Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
