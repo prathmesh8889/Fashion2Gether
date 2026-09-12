@@ -1,165 +1,103 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, Instagram, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, MessageCircle, Send, CheckCircle } from 'lucide-react';
+import { useStore } from '../context/StoreContext';
 
 const ContactPage: React.FC = () => {
+  const { storeInfo, addEnquiry } = useStore();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const errs: Record<string, string> = {};
+    if (!formData.name.trim()) errs.name = 'Name required';
+    if (!formData.phone.trim()) errs.phone = 'Phone required';
+    if (!formData.message.trim()) errs.message = 'Message required';
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
+    addEnquiry(formData);
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', phone: '', message: '' });
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold font-playfair">Get in Touch</h1>
-        <p className="text-gray-500 mt-2 max-w-xl mx-auto">
-          Have questions? We'd love to hear from you. Visit our exclusive women's store or send us a message.
-        </p>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-12">
-        {/* Contact Info */}
-        <div>
-          <h2 className="text-xl font-bold mb-6">Store Information</h2>
-          <div className="space-y-6">
-            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border shadow-sm">
-              <div className="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center shrink-0">
-                <MapPin size={20} className="text-pink-500" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm">Address</h3>
-                <p className="text-gray-600 text-sm mt-1">
-                  Near Veer Vamanrao Chowk, Behind Jay Ambe Tel Bandar,<br />
-                  Tilakwadi, Yavatmal, Maharashtra 445002
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border shadow-sm">
-              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
-                <Phone size={20} className="text-green-500" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm">Phone</h3>
-                <p className="text-gray-600 text-sm mt-1">+91 95955 35339</p>
-                <p className="text-gray-600 text-sm">+91 70205 15428</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border shadow-sm">
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
-                <Mail size={20} className="text-blue-500" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm">Email</h3>
-                <p className="text-gray-600 text-sm mt-1">info@fashion2gether.com</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border shadow-sm">
-              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
-                <Clock size={20} className="text-purple-500" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm">Working Hours</h3>
-                <p className="text-gray-600 text-sm mt-1">Monday - Sunday: 10:00 AM - 9:30 PM</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border shadow-sm">
-              <div className="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center shrink-0">
-                <Instagram size={20} className="text-pink-500" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm">Social Media</h3>
-                <p className="text-gray-600 text-sm mt-1">
-                  <a href="https://instagram.com/fashion2gether_" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:underline">
-                    @fashion2gether_
-                  </a>
-                  {' • '}
-                  <a href="https://instagram.com/fashion2gether_f2g" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:underline">
-                    @fashion2gether_f2g
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* WhatsApp CTA */}
-          <a
-            href="https://wa.me/919595535339"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 flex items-center justify-center gap-2 w-full py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors"
-          >
-            <MessageCircle size={20} />
-            Chat on WhatsApp
-          </a>
+    <div className="bg-[var(--ivory)] min-h-screen">
+      <div className="container-custom py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-3xl md:text-4xl font-playfair font-bold text-[var(--charcoal)] mb-2">Get in Touch</h1>
+          <div className="section-divider"></div>
+          <p className="text-[var(--medium-gray)] mt-3">We'd love to hear from you</p>
         </div>
 
-        {/* Contact Form */}
-        <div>
-          <h2 className="text-xl font-bold mb-6">Send us a Message</h2>
-          <form onSubmit={handleSubmit} className="bg-white rounded-xl border shadow-sm p-6 space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">Your Name</label>
-              <input
-                type="text"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full border-2 rounded-lg px-4 py-2.5 focus:border-pink-500 focus:outline-none"
-                placeholder="Enter your name"
-              />
+        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          {/* Contact Info */}
+          <div>
+            <h2 className="text-xl font-playfair font-bold mb-6">Store Information</h2>
+            <div className="space-y-4">
+              {[
+                { icon: MapPin, label: 'Address', value: storeInfo.address, color: 'bg-pink-50 text-[var(--rose)]' },
+                { icon: Phone, label: 'Phone', value: storeInfo.phone, color: 'bg-green-50 text-green-600', link: `tel:${storeInfo.phone}` },
+                { icon: Mail, label: 'Email', value: storeInfo.email, color: 'bg-blue-50 text-blue-600', link: `mailto:${storeInfo.email}` },
+                { icon: Clock, label: 'Hours', value: storeInfo.hours, color: 'bg-purple-50 text-purple-600' },
+                { icon: Instagram, label: 'Instagram', value: '@fashion2gether_', color: 'bg-pink-50 text-[var(--rose)]', link: storeInfo.instagram },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 bg-white rounded-lg border border-[var(--light-gray)]">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${item.color}`}>
+                    <item.icon size={18} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-[var(--medium-gray)] uppercase tracking-wider">{item.label}</p>
+                    {item.link ? (
+                      <a href={item.link} target={item.link.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="text-sm font-medium hover:text-[var(--rose)] transition-colors">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="text-sm font-medium">{item.value}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Email Address</label>
-              <input
-                type="email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full border-2 rounded-lg px-4 py-2.5 focus:border-pink-500 focus:outline-none"
-                placeholder="Enter your email"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Phone Number</label>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full border-2 rounded-lg px-4 py-2.5 focus:border-pink-500 focus:outline-none"
-                placeholder="Enter your phone number"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Message</label>
-              <textarea
-                required
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full border-2 rounded-lg px-4 py-2.5 focus:border-pink-500 focus:outline-none resize-none"
-                placeholder="How can we help you?"
-              />
-            </div>
-            {submitted && (
-              <div className="bg-green-50 border border-green-200 text-green-700 p-3 rounded-lg text-sm">
-                ✓ Message sent successfully! We'll get back to you soon.
+            <a href={`https://wa.me/${storeInfo.whatsapp}`} target="_blank" rel="noopener noreferrer" className="mt-6 flex items-center justify-center gap-2 w-full py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors">
+              <MessageCircle size={18} /> Chat on WhatsApp
+            </a>
+          </div>
+
+          {/* Form */}
+          <div>
+            <h2 className="text-xl font-playfair font-bold mb-6">Send a Message</h2>
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg p-6 border border-[var(--light-gray)] space-y-4">
+              <div>
+                <input type="text" placeholder="Your Name *" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className={`w-full px-4 py-3 bg-[var(--cream)] border rounded-lg text-sm focus:outline-none focus:border-[var(--rose)] ${errors.name ? 'border-red-400' : 'border-[var(--light-gray)]'}`} />
+                {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
               </div>
-            )}
-            <button
-              type="submit"
-              className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:opacity-90 flex items-center justify-center gap-2"
-            >
-              <Send size={18} /> Send Message
-            </button>
-          </form>
+              <div>
+                <input type="email" placeholder="Email (optional)" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="w-full px-4 py-3 bg-[var(--cream)] border border-[var(--light-gray)] rounded-lg text-sm focus:outline-none focus:border-[var(--rose)]" />
+              </div>
+              <div>
+                <input type="tel" placeholder="Phone Number *" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className={`w-full px-4 py-3 bg-[var(--cream)] border rounded-lg text-sm focus:outline-none focus:border-[var(--rose)] ${errors.phone ? 'border-red-400' : 'border-[var(--light-gray)]'}`} />
+                {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
+              </div>
+              <div>
+                <textarea rows={4} placeholder="Your Message *" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className={`w-full px-4 py-3 bg-[var(--cream)] border rounded-lg text-sm focus:outline-none focus:border-[var(--rose)] resize-none ${errors.message ? 'border-red-400' : 'border-[var(--light-gray)]'}`} />
+                {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
+              </div>
+              {submitted && (
+                <div className="flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 p-3 rounded-lg text-sm">
+                  <CheckCircle size={16} /> Message sent! We'll get back to you soon.
+                </div>
+              )}
+              <button type="submit" className="w-full py-3 bg-[var(--rose)] text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-[var(--burgundy)] transition-colors">
+                <Send size={16} /> Send Message
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

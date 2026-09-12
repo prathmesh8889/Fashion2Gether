@@ -1,121 +1,165 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, ArrowUp } from 'lucide-react';
+import { useStore } from '../context/StoreContext';
+
+const LOGO_URL = "https://raw.githubusercontent.com/prathmesh8889/Fashion2Gether/main/fashion2gether.jpeg";
 
 const Footer: React.FC = () => {
+  const { storeInfo } = useStore();
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-[var(--charcoal)] text-white">
       {/* Newsletter */}
-      <div className="bg-gradient-to-r from-pink-500 to-purple-600 py-8">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold text-white mb-2 font-playfair">Join the Fashion2gether Family 👗</h3>
-          <p className="text-pink-100 mb-4">Exclusive offers & new women's fashion arrivals directly in your inbox</p>
-          <div className="flex max-w-md mx-auto gap-2">
+      <div className="bg-[var(--rose)]">
+        <div className="container-custom py-10 text-center">
+          <h3 className="text-2xl font-playfair font-bold mb-2">Stay Connected</h3>
+          <p className="text-white/80 text-sm mb-5">Get updates on new arrivals and exclusive offers</p>
+          <form className="max-w-md mx-auto flex gap-2" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-2.5 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:bg-white/30"
+              placeholder="Your email address"
+              className="flex-1 px-4 py-2.5 rounded-full bg-white/20 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/30"
             />
-            <button className="px-6 py-2.5 bg-white text-pink-600 font-semibold rounded-lg hover:bg-pink-50 transition-colors">
+            <button className="px-6 py-2.5 bg-white text-[var(--rose)] font-semibold rounded-full text-sm hover:bg-[var(--cream)] transition-colors">
               Subscribe
             </button>
-          </div>
+          </form>
         </div>
       </div>
 
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Main Footer */}
+      <div className="container-custom py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* About */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">F</span>
-              </div>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src={LOGO_URL}
+                alt="Fashion2gether" 
+                className="w-10 h-10 rounded-full object-cover border border-white/20"
+              />
               <div>
-                <h3 className="text-white font-bold text-lg font-playfair">Fashion2gether</h3>
-                <p className="text-xs text-gray-400">Since 2010</p>
+                <h3 className="font-playfair font-bold text-lg">Fashion2gether</h3>
+                <p className="text-[10px] text-white/50 uppercase tracking-wider">Women's Fashion Boutique</p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 mb-4">
-              Yavatmal's premier destination for women's & girls' fashion. 15+ years of delivering style, elegance, and quality. We are an exclusive women's clothing store — only girls' wear available! 👗
+            <p className="text-sm text-white/60 leading-relaxed mb-4">
+              Yavatmal's trusted destination for women's fashion since 2010. We offer a curated collection of ethnic wear, western wear, and accessories for the modern woman.
             </p>
             <div className="flex gap-3">
-              <a href="https://instagram.com/fashion2gether_" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-500 transition-colors">
+              <a href={storeInfo.instagram} target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--rose)] transition-colors" aria-label="Instagram">
                 <Instagram size={16} />
               </a>
-              <a href="#" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-[var(--rose)] transition-colors" aria-label="Facebook">
                 <Facebook size={16} />
+              </a>
+              <a href={`https://wa.me/${storeInfo.whatsapp}`} target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors" aria-label="WhatsApp">
+                <Phone size={16} />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Women's Collection</h4>
-            <ul className="space-y-2">
-              <li><Link to="/products" className="text-sm hover:text-pink-400 transition-colors">All Women's Wear</Link></li>
-              <li><Link to="/products?category=Western+Wear" className="text-sm hover:text-pink-400 transition-colors">Western Wear (Girls)</Link></li>
-              <li><Link to="/products?category=Ethnic+Wear" className="text-sm hover:text-pink-400 transition-colors">Ethnic Wear (Kurtis/Sarees)</Link></li>
-              <li><Link to="/products?filter=new" className="text-sm hover:text-pink-400 transition-colors">New Arrivals</Link></li>
-              <li><Link to="/products?filter=trending" className="text-sm hover:text-pink-400 transition-colors">Trending Now</Link></li>
-              <li><Link to="/products?filter=sale" className="text-sm hover:text-pink-400 transition-colors">Sale</Link></li>
+            <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+            <ul className="space-y-2.5">
+              {[
+                { name: 'All Collections', path: '/collections' },
+                { name: 'Ethnic Wear', path: '/collections?category=Ethnic+Wear' },
+                { name: 'Western Wear', path: '/collections?category=Western+Wear' },
+                { name: 'New Arrivals', path: '/collections?filter=new' },
+                { name: 'About Us', path: '/about' },
+                { name: 'Contact', path: '/contact' },
+              ].map(link => (
+                <li key={link.name}>
+                  <Link to={link.path} className="text-sm text-white/60 hover:text-[var(--rose)] transition-colors">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Shopping Help</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-sm hover:text-pink-400 transition-colors">Shipping Policy</a></li>
-              <li><a href="#" className="text-sm hover:text-pink-400 transition-colors">Return & Exchange</a></li>
-              <li><a href="#" className="text-sm hover:text-pink-400 transition-colors">Size Guide</a></li>
-              <li><a href="#" className="text-sm hover:text-pink-400 transition-colors">Track Order</a></li>
-              <li><a href="#" className="text-sm hover:text-pink-400 transition-colors">FAQ</a></li>
-              <li><Link to="/contact" className="text-sm hover:text-pink-400 transition-colors">Contact Us</Link></li>
+            <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">Customer Service</h4>
+            <ul className="space-y-2.5">
+              {[
+                'Shipping Policy',
+                'Return & Exchange',
+                'Size Guide',
+                'Track Order',
+                'FAQ',
+                'Privacy Policy',
+              ].map(item => (
+                <li key={item}>
+                  <a href="#" className="text-sm text-white/60 hover:text-[var(--rose)] transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Visit Our Women's Store</h4>
+            <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">Visit Our Store</h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <MapPin size={16} className="text-pink-400 mt-0.5 shrink-0" />
-                <span className="text-sm">Near Veer Vamanrao Chowk, Behind Jay Ambe Tel Bandar, Tilakwadi, Yavatmal, Maharashtra 445002</span>
+              <li className="flex items-start gap-2.5">
+                <MapPin size={16} className="text-[var(--rose)] mt-0.5 shrink-0" />
+                <span className="text-sm text-white/60">{storeInfo.address}</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone size={16} className="text-pink-400 shrink-0" />
-                <span className="text-sm">+91 95955 35339</span>
+              <li className="flex items-center gap-2.5">
+                <Phone size={16} className="text-[var(--rose)] shrink-0" />
+                <a href={`tel:${storeInfo.phone}`} className="text-sm text-white/60 hover:text-white transition-colors">
+                  {storeInfo.phone}
+                </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail size={16} className="text-pink-400 shrink-0" />
-                <span className="text-sm">info@fashion2gether.com</span>
+              <li className="flex items-center gap-2.5">
+                <Mail size={16} className="text-[var(--rose)] shrink-0" />
+                <a href={`mailto:${storeInfo.email}`} className="text-sm text-white/60 hover:text-white transition-colors">
+                  {storeInfo.email}
+                </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Clock size={16} className="text-pink-400 shrink-0" />
-                <span className="text-sm">10:00 AM - 9:30 PM (All Days)</span>
+              <li className="flex items-center gap-2.5">
+                <Clock size={16} className="text-[var(--rose)] shrink-0" />
+                <span className="text-sm text-white/60">{storeInfo.hours}</span>
               </li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-gray-800 py-4">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-gray-500">© 2024 Fashion2gether. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-gray-500">Payment Partners:</span>
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="container-custom py-4 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-white/40">
+            © 2024 Fashion2gether. All rights reserved.
+          </p>
+          <div className="flex items-center gap-3 text-xs text-white/40">
+            <span>We Accept:</span>
             <div className="flex gap-2">
-              <span className="bg-gray-800 px-2 py-1 rounded text-xs">GPay</span>
-              <span className="bg-gray-800 px-2 py-1 rounded text-xs">PhonePe</span>
-              <span className="bg-gray-800 px-2 py-1 rounded text-xs">Paytm</span>
-              <span className="bg-gray-800 px-2 py-1 rounded text-xs">UPI</span>
+              {['GPay', 'PhonePe', 'Paytm', 'UPI', 'COD'].map(method => (
+                <span key={method} className="bg-white/10 px-2 py-0.5 rounded text-[10px]">
+                  {method}
+                </span>
+              ))}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Scroll to Top */}
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 w-11 h-11 bg-[var(--rose)] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[var(--burgundy)] transition-colors z-40"
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={18} />
+      </button>
     </footer>
   );
 };

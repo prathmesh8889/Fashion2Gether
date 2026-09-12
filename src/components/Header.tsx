@@ -1,197 +1,221 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingBag, Heart, User, Menu, X, LogOut, Shield } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Search, ShoppingBag, Heart, User, Menu, X, Phone, MapPin, Instagram } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
+
+const LOGO_URL = "https://raw.githubusercontent.com/prathmesh8889/Fashion2Gether/main/fashion2gether.jpeg";
 
 const Header: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const { cartCount, isLoggedIn, isAdmin, user, logout, wishlist } = useStore();
+  const [scrolled, setScrolled] = useState(false);
+  const { cartCount, isLoggedIn, user, logout, wishlist, storeInfo } = useStore();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
+      navigate(`/collections?search=${encodeURIComponent(searchQuery)}`);
       setSearchQuery('');
     }
   };
 
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Collections', path: '/collections' },
+    { name: 'Ethnic Wear', path: '/collections?category=Ethnic+Wear' },
+    { name: 'Western Wear', path: '/collections?category=Western+Wear' },
+    { name: 'New Arrivals', path: '/collections?filter=new' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
-      {/* Top bar */}
-      <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white text-center py-1.5 text-sm font-medium">
-        ✨ Free Shipping on orders above ₹999 | Use code FASHION50 for extra 10% OFF ✨
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white'}`}>
+      {/* Top Bar */}
+      <div className="bg-[#1a1a1a] text-white text-xs py-2 hidden md:block">
+        <div className="container-custom flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <a href={`tel:${storeInfo.phone}`} className="flex items-center gap-1.5 hover:text-[var(--rose)] transition-colors">
+              <Phone size={12} />
+              <span>{storeInfo.phone}</span>
+            </a>
+            <span className="flex items-center gap-1.5">
+              <MapPin size={12} />
+              <span>Yavatmal, Maharashtra</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a href={storeInfo.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-[var(--rose)] transition-colors">
+              <Instagram size={12} />
+              <span>@fashion2gether_</span>
+            </a>
+            <span className="text-[var(--light-gray)]">|</span>
+            <span>Free Shipping on orders above ₹999</span>
+          </div>
+        </div>
       </div>
-      
-      {/* Main header */}
-      <div className="max-w-7xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-4">
-          {/* Mobile menu button */}
+
+      {/* Main Header */}
+      <div className="container-custom">
+        <div className="flex items-center justify-between py-4">
+          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-gray-700"
+            className="lg:hidden p-2 -ml-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">F</span>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-xl font-bold gradient-text font-playfair">Fashion2gether</h1>
-              <p className="text-[10px] text-gray-500 -mt-1">Exclusive Women's Fashion</p>
+          <Link to="/" className="flex items-center gap-3 group">
+            <img 
+              src={LOGO_URL}
+              alt="Fashion2gether Logo" 
+              className="w-12 h-12 rounded-full object-cover border-2 border-[var(--light-gray)] group-hover:border-[var(--rose)] transition-colors"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
+            />
+            <div>
+              <h1 className="text-xl font-playfair font-bold text-[var(--charcoal)] leading-tight">
+                Fashion<span className="text-[var(--rose)]">2</span>gether
+              </h1>
+              <p className="text-[10px] text-[var(--medium-gray)] uppercase tracking-widest">
+                Women's Fashion Boutique
+              </p>
             </div>
           </Link>
 
-          {/* Search bar */}
-          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-xl">
+          {/* Search Bar - Desktop */}
+          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="Search for kurtis, sarees, dresses, tops..."
+                placeholder="Search kurtis, sarees, dresses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full py-2.5 px-4 pr-12 border-2 border-gray-200 rounded-lg focus:border-pink-500 focus:outline-none transition-colors"
+                className="w-full py-2.5 px-4 pr-12 bg-[var(--cream)] border border-[var(--light-gray)] rounded-full text-sm focus:outline-none focus:border-[var(--rose)] focus:bg-white transition-all"
               />
-              <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-pink-500">
-                <Search size={20} />
+              <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--medium-gray)] hover:text-[var(--rose)]">
+                <Search size={18} />
               </button>
             </div>
           </form>
 
-          {/* Right actions */}
-          <div className="flex items-center gap-3 sm:gap-5">
-            {/* User menu */}
-            <div className="relative">
-              <button
-                onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="flex items-center gap-1 text-gray-700 hover:text-pink-500 transition-colors"
-              >
-                <User size={22} />
-                <span className="hidden lg:inline text-sm font-medium">
-                  {isLoggedIn ? user?.name : 'Login'}
-                </span>
-              </button>
-              {userMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border py-2 z-50">
-                  {isLoggedIn ? (
-                    <>
-                      <Link to="/orders" className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm" onClick={() => setUserMenuOpen(false)}>
-                        <ShoppingBag size={16} /> My Orders
-                      </Link>
-                      <Link to="/wishlist" className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm" onClick={() => setUserMenuOpen(false)}>
-                        <Heart size={16} /> Wishlist ({wishlist.length})
-                      </Link>
-                      {isAdmin && (
-                        <Link to="/admin" className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm text-purple-600" onClick={() => setUserMenuOpen(false)}>
-                          <Shield size={16} /> Admin Panel
-                        </Link>
-                      )}
-                      <button
-                        onClick={() => { logout(); setUserMenuOpen(false); navigate('/'); }}
-                        className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm w-full text-left text-red-500"
-                      >
-                        <LogOut size={16} /> Logout
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <Link to="/login" className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm" onClick={() => setUserMenuOpen(false)}>
-                        <User size={16} /> Customer Login
-                      </Link>
-                      <Link to="/admin/login" className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm text-purple-600" onClick={() => setUserMenuOpen(false)}>
-                        <Shield size={16} /> Admin Login
-                      </Link>
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-
+          {/* Right Actions */}
+          <div className="flex items-center gap-4">
             {/* Wishlist */}
-            <Link to="/wishlist" className="relative text-gray-700 hover:text-pink-500 transition-colors">
+            <Link to="/wishlist" className="relative p-2 hover:text-[var(--rose)] transition-colors" aria-label="Wishlist">
               <Heart size={22} />
               {wishlist.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-[var(--rose)] text-white text-[10px] rounded-full flex items-center justify-center font-semibold">
                   {wishlist.length}
                 </span>
               )}
             </Link>
 
             {/* Cart */}
-            <Link to="/cart" className="relative text-gray-700 hover:text-pink-500 transition-colors">
+            <Link to="/cart" className="relative p-2 hover:text-[var(--rose)] transition-colors" aria-label="Cart">
               <ShoppingBag size={22} />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-[var(--rose)] text-white text-[10px] rounded-full flex items-center justify-center font-semibold">
                   {cartCount}
                 </span>
               )}
             </Link>
+
+            {/* User */}
+            <Link to={isLoggedIn ? "/account" : "/login"} className="hidden sm:flex items-center gap-2 p-2 hover:text-[var(--rose)] transition-colors">
+              <User size={22} />
+              <span className="text-sm font-medium">
+                {isLoggedIn ? user?.name : 'Login'}
+              </span>
+            </Link>
           </div>
         </div>
 
-        {/* Mobile search */}
-        <form onSubmit={handleSearch} className="md:hidden mt-3">
+        {/* Navigation - Desktop */}
+        <nav className="hidden lg:block border-t border-[var(--light-gray)]">
+          <div className="flex items-center justify-center gap-8 py-3">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-[var(--rose)] ${
+                  location.pathname === link.path ? 'text-[var(--rose)]' : 'text-[var(--charcoal)]'
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Search */}
+      <div className="md:hidden px-4 pb-3">
+        <form onSubmit={handleSearch}>
           <div className="relative">
             <input
               type="text"
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full py-2 px-4 pr-10 border-2 border-gray-200 rounded-lg focus:border-pink-500 focus:outline-none"
+              className="w-full py-2.5 px-4 pr-10 bg-[var(--cream)] border border-[var(--light-gray)] rounded-full text-sm focus:outline-none focus:border-[var(--rose)]"
             />
-            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-pink-500">
+            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--medium-gray)]">
               <Search size={18} />
             </button>
           </div>
         </form>
       </div>
 
-      {/* Navigation */}
-      <nav className="border-t border-gray-100 hidden lg:block">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-8 py-3">
-            <Link to="/products" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
-              ALL WOMEN'S WEAR
-            </Link>
-            <Link to="/products?category=Western+Wear" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
-              WESTERN WEAR
-            </Link>
-            <Link to="/products?category=Ethnic+Wear" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
-              ETHNIC WEAR
-            </Link>
-            <Link to="/products?category=Bottom+Wear" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
-              BOTTOMS & LEGGINGS
-            </Link>
-            <Link to="/products?filter=new" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
-              NEW ARRIVALS
-            </Link>
-            <Link to="/products?filter=trending" className="text-sm font-medium text-pink-500 transition-colors">
-              🔥 TRENDING
-            </Link>
-            <Link to="/products?filter=sale" className="text-sm font-medium text-green-600 transition-colors">
-              💰 SALE
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t animate-slideIn">
-          <div className="px-4 py-4 space-y-3">
-            <Link to="/products" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>All Women's Wear</Link>
-            <Link to="/products?category=Western+Wear" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>Western Wear</Link>
-            <Link to="/products?category=Ethnic+Wear" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>Ethnic Wear</Link>
-            <Link to="/products?category=Bottom+Wear" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>Bottoms & Leggings</Link>
-            <Link to="/products?filter=new" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>New Arrivals</Link>
-            <Link to="/products?filter=trending" className="block py-2 text-sm font-medium text-pink-500" onClick={() => setMobileMenuOpen(false)}>🔥 Trending</Link>
-            <Link to="/products?filter=sale" className="block py-2 text-sm font-medium text-green-600" onClick={() => setMobileMenuOpen(false)}>💰 Sale</Link>
-          </div>
+        <div className="lg:hidden bg-white border-t border-[var(--light-gray)] animate-slideDown">
+          <nav className="container-custom py-4 space-y-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="block px-4 py-3 text-sm font-medium text-[var(--charcoal)] hover:bg-[var(--cream)] hover:text-[var(--rose)] rounded-lg transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="border-t border-[var(--light-gray)] pt-3 mt-3">
+              {isLoggedIn ? (
+                <button
+                  onClick={() => { logout(); navigate('/'); }}
+                  className="block w-full text-left px-4 py-3 text-sm font-medium text-[var(--rose)] hover:bg-[var(--blush)] rounded-lg"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link to="/login" className="block px-4 py-3 text-sm font-medium text-[var(--charcoal)] hover:bg-[var(--cream)] rounded-lg">
+                  Login / Sign Up
+                </Link>
+              )}
+              <Link to="/admin/login" className="block px-4 py-3 text-sm font-medium text-[var(--medium-gray)] hover:bg-[var(--cream)] rounded-lg">
+                Admin Panel
+              </Link>
+            </div>
+          </nav>
         </div>
       )}
     </header>
