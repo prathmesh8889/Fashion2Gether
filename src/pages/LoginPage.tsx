@@ -45,9 +45,11 @@ const LoginPage: React.FC = () => {
         <div className="bg-white rounded-2xl shadow-xl p-8 border">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <User size={28} className="text-white" />
-            </div>
+            <img 
+              src="https://raw.githubusercontent.com/prathmesh8889/Fashion2Gether/main/fashion2gether.jpeg" 
+              alt="Fashion2gether Logo" 
+              className="w-20 h-20 rounded-full object-cover border-3 border-pink-200 mx-auto mb-4"
+            />
             <h1 className="text-2xl font-bold font-playfair">{isLogin ? 'Welcome Back!' : 'Create Account'}</h1>
             <p className="text-gray-500 mt-1 text-sm">
               {isLogin ? 'Login to your Fashion2gether account' : 'Join the Fashion2gether family'}

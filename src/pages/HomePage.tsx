@@ -24,6 +24,11 @@ const HomePage: React.FC = () => {
         <div className={`bg-gradient-to-r ${banners[currentBanner].gradient} transition-all duration-700`}>
           <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div className="text-center text-white">
+              <img 
+                src="https://raw.githubusercontent.com/prathmesh8889/Fashion2Gether/main/fashion2gether.jpeg" 
+                alt="Fashion2gether" 
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-white/30 mx-auto mb-6 shadow-2xl"
+              />
               <p className="text-sm md:text-base uppercase tracking-widest mb-2 opacity-90">{banners[currentBanner].subtitle}</p>
               <h1 className="text-4xl md:text-6xl font-bold font-playfair mb-4">{banners[currentBanner].title}</h1>
               <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">{banners[currentBanner].description}</p>

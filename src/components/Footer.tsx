@@ -29,9 +29,11 @@ const Footer: React.FC = () => {
           {/* About */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">F</span>
-              </div>
+              <img 
+                src="https://raw.githubusercontent.com/prathmesh8889/Fashion2Gether/main/fashion2gether.jpeg" 
+                alt="Fashion2gether Logo" 
+                className="w-12 h-12 rounded-full object-cover border-2 border-pink-300"
+              />
               <div>
                 <h3 className="text-white font-bold text-lg font-playfair">Fashion2gether</h3>
                 <p className="text-xs text-gray-400">Since 2010</p>

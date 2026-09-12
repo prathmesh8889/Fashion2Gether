@@ -57,9 +57,11 @@ const AdminDashboard: React.FC = () => {
       <aside className="w-64 bg-white border-r shadow-sm hidden lg:block">
         <div className="p-6 border-b">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">F</span>
-            </div>
+            <img 
+              src="https://raw.githubusercontent.com/prathmesh8889/Fashion2Gether/main/fashion2gether.jpeg" 
+              alt="Fashion2gether Logo" 
+              className="w-9 h-9 rounded-full object-cover border border-purple-200"
+            />
             <div>
               <h2 className="font-bold text-sm">Fashion2gether</h2>
               <p className="text-[10px] text-gray-500">Women's Store Admin</p>
