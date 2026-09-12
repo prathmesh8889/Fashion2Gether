@@ -27,10 +27,10 @@ export const products: Product[] = [
     price: 1499,
     originalPrice: 2999,
     discount: 50,
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=800&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/b2586640-3ec9-4ed4-b0b9-1fd8329f3448/blob",
     images: [
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1617627143750-d86bc21e42cc?w=600&h=800&fit=crop",
+      "https://im.qwen.ai/api/gateway/v1/file/b2586640-3ec9-4ed4-b0b9-1fd8329f3448/blob",
+      "https://im.qwen.ai/api/gateway/v1/file/ae85ca15-858a-48af-a703-06bf91450d60/blob",
     ],
     category: "Ethnic Wear",
     subCategory: "Suits",
@@ -50,10 +50,10 @@ export const products: Product[] = [
     price: 1899,
     originalPrice: 3499,
     discount: 46,
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/ca097746-e6f6-4891-b3d7-801801d48da3/blob",
     images: [
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=600&h=800&fit=crop",
+      "https://im.qwen.ai/api/gateway/v1/file/ca097746-e6f6-4891-b3d7-801801d48da3/blob",
+      "https://im.qwen.ai/api/gateway/v1/file/b2586640-3ec9-4ed4-b0b9-1fd8329f3448/blob",
     ],
     category: "Western Wear",
     subCategory: "Gowns",
@@ -73,7 +73,7 @@ export const products: Product[] = [
     price: 599,
     originalPrice: 1199,
     discount: 50,
-    image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600&h=800&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/40ddc5c7-bf91-4d5c-8465-5e73f202e9cd/blob",
     images: [
       "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600&h=800&fit=crop",
       "https://images.unsplash.com/photo-1602810316693-3667c854239a?w=600&h=800&fit=crop",
@@ -385,37 +385,37 @@ export const categories = [
   {
     name: "Ethnic Wear",
     icon: "🥻",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&h=400&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/b2586640-3ec9-4ed4-b0b9-1fd8329f3448/blob",
     description: "Kurtis, Sarees & Suits"
   },
   {
     name: "Western Wear",
     icon: "👗",
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/ca097746-e6f6-4891-b3d7-801801d48da3/blob",
     description: "Dresses, Tops & Jeans"
   },
   {
     name: "Bottom Wear",
     icon: "👖",
-    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&h=400&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/40ddc5c7-bf91-4d5c-8465-5e73f202e9cd/blob",
     description: "Leggings & Palazzos"
   },
   {
     name: "Sarees",
     icon: "🎀",
-    image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42cc?w=400&h=400&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/ae85ca15-858a-48af-a703-06bf91450d60/blob",
     description: "Silk, Georgette & More"
   },
   {
     name: "Kurtis",
     icon: "👚",
-    image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=400&h=400&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/40ddc5c7-bf91-4d5c-8465-5e73f202e9cd/blob",
     description: "Cotton, Rayon & Silk"
   },
   {
     name: "Dresses",
     icon: "💃",
-    image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&h=400&fit=crop",
+    image: "https://im.qwen.ai/api/gateway/v1/file/ca097746-e6f6-4891-b3d7-801801d48da3/blob",
     description: "Maxi, Midi & Gowns"
   },
 ];
@@ -427,8 +427,8 @@ export const banners = [
     subtitle: "Ethnic Elegance",
     description: "Discover our handpicked collection of designer kurtis, sarees and suits crafted for the modern woman",
     cta: "Shop Ethnic Wear",
-    link: "/products?category=Ethnic+Wear",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1400&h=700&fit=crop"
+    link: "/collections?category=Ethnic+Wear",
+    image: "https://im.qwen.ai/api/gateway/v1/file/4663b5b0-e348-45d2-94ed-1db8a07f41d0/blob"
   },
   {
     id: 2,
@@ -436,8 +436,8 @@ export const banners = [
     subtitle: "Western Chic",
     description: "From casual dresses to party gowns — styles that make you stand out",
     cta: "Explore Western Wear",
-    link: "/products?category=Western+Wear",
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=1400&h=700&fit=crop"
+    link: "/collections?category=Western+Wear",
+    image: "https://im.qwen.ai/api/gateway/v1/file/ca097746-e6f6-4891-b3d7-801801d48da3/blob"
   },
   {
     id: 3,
@@ -445,7 +445,7 @@ export const banners = [
     subtitle: "Silk & Elegance",
     description: "Premium silk sarees and festive suits for every celebration",
     cta: "Shop Sarees",
-    link: "/products?category=Ethnic+Wear&sub=Sarees",
-    image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42cc?w=1400&h=700&fit=crop"
+    link: "/collections?search=saree",
+    image: "https://im.qwen.ai/api/gateway/v1/file/ae85ca15-858a-48af-a703-06bf91450d60/blob"
   }
 ];
