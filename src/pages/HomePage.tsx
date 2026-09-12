@@ -76,7 +76,7 @@ const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold font-playfair">Shop by Category</h2>
-          <p className="text-gray-500 mt-2">Explore our curated collections</p>
+          <p className="text-gray-500 mt-2">Explore our curated women's collections</p>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
           {categories.map((cat) => (
@@ -102,7 +102,7 @@ const HomePage: React.FC = () => {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold font-playfair">🔥 Trending Now</h2>
-              <p className="text-gray-500 mt-1">Most loved by our customers</p>
+              <p className="text-gray-500 mt-1">Most loved by our women customers</p>
             </div>
             <Link to="/products?filter=trending" className="text-pink-500 font-medium text-sm hover:underline flex items-center gap-1">
               View All <ChevronRight size={16} />
@@ -149,7 +149,7 @@ const HomePage: React.FC = () => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold font-playfair">✨ New Arrivals</h2>
-            <p className="text-gray-500 mt-1">Fresh styles just dropped</p>
+            <p className="text-gray-500 mt-1">Fresh styles for girls just dropped</p>
           </div>
           <Link to="/products?filter=new" className="text-pink-500 font-medium text-sm hover:underline flex items-center gap-1">
             View All <ChevronRight size={16} />
@@ -165,7 +165,7 @@ const HomePage: React.FC = () => {
       {/* Testimonials */}
       <section className="bg-gradient-to-br from-pink-50 to-purple-50 py-12">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold font-playfair text-center mb-8">What Our Customers Say</h2>
+          <h2 className="text-2xl md:text-3xl font-bold font-playfair text-center mb-8">What Our Women Customers Say 💬</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { name: "Bhoomika L.", text: "Amazing store with latest fashion under budget with friendly customer service.", rating: 5 },
@@ -190,7 +190,7 @@ const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="bg-white rounded-2xl p-8 shadow-sm border text-center">
           <h2 className="text-2xl font-bold font-playfair mb-2">Visit Our Store in Yavatmal</h2>
-          <p className="text-gray-500 mb-4">Experience the finest ladies' clothing in person</p>
+          <p className="text-gray-500 mb-4">Experience the finest women's clothing collection in person — exclusively for girls!</p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <span className="text-pink-500">📍</span>

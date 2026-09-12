@@ -43,7 +43,7 @@ const Header: React.FC = () => {
             </div>
             <div className="hidden sm:block">
               <h1 className="text-xl font-bold gradient-text font-playfair">Fashion2gether</h1>
-              <p className="text-[10px] text-gray-500 -mt-1">Premium Women's Fashion</p>
+              <p className="text-[10px] text-gray-500 -mt-1">Exclusive Women's Fashion</p>
             </div>
           </Link>
 
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="Search for kurtis, dresses, tops..."
+                placeholder="Search for kurtis, sarees, dresses, tops..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full py-2.5 px-4 pr-12 border-2 border-gray-200 rounded-lg focus:border-pink-500 focus:outline-none transition-colors"
@@ -156,7 +156,7 @@ const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-8 py-3">
             <Link to="/products" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
-              ALL PRODUCTS
+              ALL WOMEN'S WEAR
             </Link>
             <Link to="/products?category=Western+Wear" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
               WESTERN WEAR
@@ -165,7 +165,7 @@ const Header: React.FC = () => {
               ETHNIC WEAR
             </Link>
             <Link to="/products?category=Bottom+Wear" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
-              BOTTOMS
+              BOTTOMS & LEGGINGS
             </Link>
             <Link to="/products?filter=new" className="text-sm font-medium text-gray-700 hover:text-pink-500 transition-colors">
               NEW ARRIVALS
@@ -184,10 +184,10 @@ const Header: React.FC = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-t animate-slideIn">
           <div className="px-4 py-4 space-y-3">
-            <Link to="/products" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>All Products</Link>
+            <Link to="/products" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>All Women's Wear</Link>
             <Link to="/products?category=Western+Wear" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>Western Wear</Link>
             <Link to="/products?category=Ethnic+Wear" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>Ethnic Wear</Link>
-            <Link to="/products?category=Bottom+Wear" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>Bottoms</Link>
+            <Link to="/products?category=Bottom+Wear" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>Bottoms & Leggings</Link>
             <Link to="/products?filter=new" className="block py-2 text-sm font-medium text-gray-700" onClick={() => setMobileMenuOpen(false)}>New Arrivals</Link>
             <Link to="/products?filter=trending" className="block py-2 text-sm font-medium text-pink-500" onClick={() => setMobileMenuOpen(false)}>🔥 Trending</Link>
             <Link to="/products?filter=sale" className="block py-2 text-sm font-medium text-green-600" onClick={() => setMobileMenuOpen(false)}>💰 Sale</Link>

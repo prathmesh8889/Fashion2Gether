@@ -8,8 +8,8 @@ const Footer: React.FC = () => {
       {/* Newsletter */}
       <div className="bg-gradient-to-r from-pink-500 to-purple-600 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold text-white mb-2 font-playfair">Join the Fashion2gether Family</h3>
-          <p className="text-pink-100 mb-4">Get exclusive offers & new arrival updates directly in your inbox</p>
+          <h3 className="text-2xl font-bold text-white mb-2 font-playfair">Join the Fashion2gether Family 👗</h3>
+          <p className="text-pink-100 mb-4">Exclusive offers & new women's fashion arrivals directly in your inbox</p>
           <div className="flex max-w-md mx-auto gap-2">
             <input
               type="email"
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-sm text-gray-400 mb-4">
-              Yavatmal's premier destination for women's fashion. 15+ years of delivering style, elegance, and quality to our customers.
+              Yavatmal's premier destination for women's & girls' fashion. 15+ years of delivering style, elegance, and quality. We are an exclusive women's clothing store — only girls' wear available! 👗
             </p>
             <div className="flex gap-3">
               <a href="https://instagram.com/fashion2gether_" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-500 transition-colors">
@@ -52,11 +52,11 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-white font-semibold mb-4">Women's Collection</h4>
             <ul className="space-y-2">
-              <li><Link to="/products" className="text-sm hover:text-pink-400 transition-colors">All Products</Link></li>
-              <li><Link to="/products?category=Western+Wear" className="text-sm hover:text-pink-400 transition-colors">Western Wear</Link></li>
-              <li><Link to="/products?category=Ethnic+Wear" className="text-sm hover:text-pink-400 transition-colors">Ethnic Wear</Link></li>
+              <li><Link to="/products" className="text-sm hover:text-pink-400 transition-colors">All Women's Wear</Link></li>
+              <li><Link to="/products?category=Western+Wear" className="text-sm hover:text-pink-400 transition-colors">Western Wear (Girls)</Link></li>
+              <li><Link to="/products?category=Ethnic+Wear" className="text-sm hover:text-pink-400 transition-colors">Ethnic Wear (Kurtis/Sarees)</Link></li>
               <li><Link to="/products?filter=new" className="text-sm hover:text-pink-400 transition-colors">New Arrivals</Link></li>
               <li><Link to="/products?filter=trending" className="text-sm hover:text-pink-400 transition-colors">Trending Now</Link></li>
               <li><Link to="/products?filter=sale" className="text-sm hover:text-pink-400 transition-colors">Sale</Link></li>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Customer Service</h4>
+            <h4 className="text-white font-semibold mb-4">Shopping Help</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-sm hover:text-pink-400 transition-colors">Shipping Policy</a></li>
               <li><a href="#" className="text-sm hover:text-pink-400 transition-colors">Return & Exchange</a></li>
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Visit Our Store</h4>
+            <h4 className="text-white font-semibold mb-4">Visit Our Women's Store</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="text-pink-400 mt-0.5 shrink-0" />

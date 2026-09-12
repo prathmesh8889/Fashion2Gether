@@ -38,7 +38,7 @@ const AdminLoginPage: React.FC = () => {
               <Shield size={28} className="text-white" />
             </div>
             <h1 className="text-2xl font-bold font-playfair">Admin Panel</h1>
-            <p className="text-gray-500 mt-1 text-sm">Fashion2gether Management</p>
+            <p className="text-gray-500 mt-1 text-sm">Fashion2gether - Women's Exclusive Store</p>
           </div>
 
           {/* Form */}

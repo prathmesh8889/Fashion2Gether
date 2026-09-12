@@ -28,6 +28,8 @@ const AdminDashboard: React.FC = () => {
     { id: '#ORD003', customer: 'Sneha Deshmukh', amount: '₹2,499', status: 'Processing', date: '2024-01-14' },
     { id: '#ORD004', customer: 'Kavita Joshi', amount: '₹599', status: 'Delivered', date: '2024-01-14' },
     { id: '#ORD005', customer: 'Meera Kulkarni', amount: '₹1,899', status: 'Pending', date: '2024-01-13' },
+    { id: '#ORD006', customer: 'Pooja Tuptewar', amount: '₹1,499', status: 'Delivered', date: '2024-01-13' },
+    { id: '#ORD007', customer: 'Bhoomika Lunawat', amount: '₹899', status: 'Shipped', date: '2024-01-12' },
   ];
 
   const getStatusColor = (status: string) => {
@@ -60,7 +62,7 @@ const AdminDashboard: React.FC = () => {
             </div>
             <div>
               <h2 className="font-bold text-sm">Fashion2gether</h2>
-              <p className="text-[10px] text-gray-500">Admin Panel</p>
+              <p className="text-[10px] text-gray-500">Women's Store Admin</p>
             </div>
           </Link>
         </div>
@@ -95,7 +97,7 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10">
           <div>
             <h1 className="text-xl font-bold capitalize">{activeTab}</h1>
-            <p className="text-sm text-gray-500">Welcome back, Admin!</p>
+            <p className="text-sm text-gray-500">Welcome back, Admin! | Women's Exclusive Store</p>
           </div>
           <div className="flex items-center gap-3">
             {/* Mobile nav */}
@@ -205,10 +207,11 @@ const AdminDashboard: React.FC = () => {
                   <h3 className="font-bold mb-4">Top Categories</h3>
                   <div className="space-y-4">
                     {[
-                      { name: 'Western Wear', percent: 35, color: 'bg-pink-500' },
-                      { name: 'Ethnic Wear', percent: 30, color: 'bg-purple-500' },
-                      { name: 'Bottom Wear', percent: 20, color: 'bg-blue-500' },
-                      { name: 'Accessories', percent: 15, color: 'bg-green-500' },
+                      { name: 'Kurtis & Suits', percent: 35, color: 'bg-pink-500' },
+                      { name: 'Western Dresses', percent: 25, color: 'bg-purple-500' },
+                      { name: 'Sarees', percent: 20, color: 'bg-blue-500' },
+                      { name: 'Tops & Jeans', percent: 12, color: 'bg-green-500' },
+                      { name: 'Accessories', percent: 8, color: 'bg-orange-500' },
                     ].map(cat => (
                       <div key={cat.name}>
                         <div className="flex justify-between text-sm mb-1">
@@ -324,7 +327,7 @@ const AdminDashboard: React.FC = () => {
             <div className="bg-white rounded-xl border shadow-sm p-6">
               <h3 className="font-bold mb-4">Customer Management</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {['Priya Sharma', 'Anita Patil', 'Sneha Deshmukh', 'Kavita Joshi', 'Meera Kulkarni', 'Sunita Rao'].map((name, i) => (
+                {['Priya Sharma', 'Anita Patil', 'Sneha Deshmukh', 'Kavita Joshi', 'Meera Kulkarni', 'Sunita Rao', 'Pooja Tuptewar', 'Bhoomika Lunawat', 'Ritu Deshpande'].map((name, i) => (
                   <div key={i} className="border rounded-lg p-4 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       {name.charAt(0)}
@@ -381,7 +384,7 @@ const AdminDashboard: React.FC = () => {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">Store Name</label>
-                  <input type="text" defaultValue="Fashion2gether" className="w-full border rounded-lg px-4 py-2.5 focus:outline-none focus:border-purple-500" />
+                  <input type="text" defaultValue="Fashion2gether - Women's Exclusive" className="w-full border rounded-lg px-4 py-2.5 focus:outline-none focus:border-purple-500" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Contact Number</label>
